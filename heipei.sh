@@ -28,6 +28,7 @@ do_start () {
 
 	echo "Creating /var/log entries"
 	mkdir -p /var/log/lighttpd
+	chown -R www-data:www-data /var/log/lighttpd
 	mkdir -p /var/log/samba
 	touch /var/log/lastlog
 	touch /var/log/wtmp
@@ -37,9 +38,10 @@ do_start () {
 	chmod 0644 /var/log/wtmp
 	chmod 0600 /var/log/btmp
 
-	echo "Mounting USB drive"
+	echo "Mounting USB drives"
 	sleep 5
 	mount /mnt/usbdrive
+	mount /mnt/usbdrive2
 	
 	echo "Starting SAMBA"
 	/etc/init.d/samba start
